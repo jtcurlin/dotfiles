@@ -33,3 +33,15 @@ source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # zsh-syntax-highlighting
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# added by Snowflake SnowSQL installer
+export PATH=/home/curlin/bin:$PATH
+
+# uv shell autocompletion
+eval "$(uv generate-shell-completion zsh)"
+
+# nvim
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# docker config (enforce XDG)
+export DOCKER_CONFIG="$HOME/.config/docker"
