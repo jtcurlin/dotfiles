@@ -5,8 +5,10 @@
 set directory=$XDG_CACHE_HOME/vim,~/,/tmp
 set backupdir=$XDG_CACHE_HOME/vim,~/,/tmp
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
-set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
-let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
+" set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+set runtimepath^=~/.config/vim
+set runtimepath+=~/.config/vim/after
+let $MYVIMRC=expand('~/.config/vim/vimrc')
 
 " (OLD)
 " set runtime path to redirect to ~/.config/vim
@@ -138,6 +140,9 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " tmuxline.vim - https://github.com/edkolev/tmuxline.vim
 Plug 'edkolev/tmuxline.vim'
+
+"rainbow csv
+Plug 'mechatroner/rainbow_csv'
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
