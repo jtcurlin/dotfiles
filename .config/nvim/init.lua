@@ -1,2 +1,1 @@
-require("curlin")
-
+require("config")

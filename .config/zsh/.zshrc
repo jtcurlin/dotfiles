@@ -1,47 +1,46 @@
-# jacob curlin 
-# updated 08/12/25
-
-# note: $ZDOTDIR is set in /etc/zshenv to redirect zsh startup to .config/zsh
-
-# [plugin] Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-#          Initialization code that may require console input (password prompts, [y/n]
-#          confirmations, etc.) must go above this block; everything else may go below.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
- source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# bare git repo manages dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# psql cli (since libpq, which includes only the cli, is keg-only)
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
-# set path
-export PATH="/usr/local/bin:$PATH"
-# export PATH="/opt/homebrew/bin:$PATH"
-
-# configure nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
-# [plugin] powerlevel10k custom prompt
+# zsh plugin: powerlevel10k theme
 source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
-# [plugin] zsh-autosuggestions
-source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# zsh-syntax-highlighting
+# zsh plugin: zsh-syntax-highlighting
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# added by Snowflake SnowSQL installer
-export PATH=/home/curlin/bin:$PATH
+# zsh plugin: zsh-autosuggestions
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# enable zsh native completion system
+autoload -Uz compinit
+compinit
+
+# compatibility for bash-style completion scripts, e.g. dbt-completion.bash
+autoload -Uz bashcompinit
+bashcompinit
+
+# dbt completion
+[[ -r "$XDG_CONFIG_HOME/zsh/.dbt-completion.bash" ]] && \
+    source "$XDG_CONFIG_HOME/zsh/.dbt-completion.bash"
 
 # uv shell autocompletion
-eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 
-# nvim
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+# config/dotfiles bare repo
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# docker config (enforce XDG)
-export DOCKER_CONFIG="$HOME/.config/docker"
+# direnv
+eval "$(direnv hook zsh)"
+
+# uv tools / local path
+export PATH="$HOME/.local/bin:$PATH"
+

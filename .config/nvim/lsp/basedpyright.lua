@@ -1,13 +1,13 @@
 return {
-  cmd = { 'basedpyright-langserver', '--stdio' },
-  filetypes = { 'python' },
+  cmd = { "basedpyright-langserver", "--stdio" },
+  filetypes = { "python" },
   root_markers = {
-    'pyproject.toml',
-    'setup.py',
-    'setup.cfg',
-    'requirements.txt',
-    'Pipfile',
-    'pyrightconfig.json',
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    "pyrightconfig.json",
   },
   settings = {
     basedpyright = {
@@ -15,7 +15,7 @@ return {
     },
     python = {
       analysis = {
-        ignore = { '*' }, -- (using Ruff)
+        -- ignore = { "*" }, -- (using Ruff)
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
       },
