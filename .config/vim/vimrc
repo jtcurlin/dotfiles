@@ -43,12 +43,11 @@ syntax on
 
 " highlight cursor line underneath the cursor horizontally
 set cursorline
+set colorcolumn=
 
-" highlight cursor line underneath the cursor vertically
-set cursorcolumn
-
-" add numbers to each line on the left-hand side
+" add relative line numbers
 set number
+set relativenumber
 
 " set shift width to 4 spaces
 set shiftwidth=4
@@ -150,6 +149,10 @@ call plug#end()
 " }}}
 
 " mappings ======================================================================================================= {{{
+"
+"
+let mapleader = " "
+let maplocalleader = " "
 
 " vim-tmux-navigator bindings - https://github.com/christoomey/vim-tmux-navigator
 "let g:tmux_navigator_no_mappings = 1
@@ -159,7 +162,8 @@ noremap <silent> <C-K> :<C-U>TmuxNavigateUp<cr>
 noremap <silent> <C-L> :<C-U>TmuxNavigateRight<cr>
 noremap <silent> <C-P> :<C-U>TmuxNavigatePrevious<cr>
 
-map <C-n> :NERDTreeToggle<CR>
+" toggle nerd file tree
+nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
 
 " open vim-powered terminal in split window
 map <Leader>t :term ++close<cr>
@@ -186,6 +190,26 @@ augroup END
 
 " }}}
 
+" appearance ===================================================================================================== {{{
+
+if has("termguicolors")
+set termguicolors
+endif
+
+set background=dark
+colorscheme monokai_pro
+
+" Let terminal background show through editor and gutters.
+highlight Normal guibg=NONE ctermbg=NONE
+highlight NonText guibg=NONE ctermbg=NONE
+highlight EndOfBuffer guibg=NONE ctermbg=NONE
+highlight LineNr guibg=NONE ctermbg=NONE
+highlight CursorLineNr guibg=NONE ctermbg=NONE
+highlight SignColumn guibg=NONE ctermbg=NONE
+highlight FoldColumn guibg=NONE ctermbg=NONE
+
+" }}}
+
 " status line ==================================================================================================== {{{
 
 " lightline status bar theme [wombat]
@@ -199,28 +223,6 @@ set laststatus=2
 
 " hide '-- INSERT --' that shows on bottom line by default in vim (redundant)
 set noshowmode
-
-
-" }}}
-
-" appearance ===================================================================================================== {{{
-
-" gruvbox theme
-" autocmd vimenter * ++nested colorscheme gruvbox
-" colorscheme gruvbox
-colorscheme monokai_pro
-
-" dark background / appearance
-set bg=dark
-
-if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
-  if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1"
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
 
 " }}}
 
