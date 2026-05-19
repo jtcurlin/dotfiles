@@ -125,11 +125,8 @@ call plug#begin('~/.config/vim/plugged')
 Plug 'itchyny/lightline.vim'
 " Plug 'vim-airline/vim-airline/'   [OLD THEME - 02_02_23]
 
-" gruvbox color scheme
-Plug 'morhetz/gruvbox'    
-
-" sonokai color scheme
-Plug 'sainnhe/sonokai'
+" monokai pro color scheme
+Plug 'phanviet/vim-monokai-pro'
 
 " nerdTree (w/ custom git plugin)
 Plug 'preservim/nerdtree' |
@@ -192,7 +189,7 @@ augroup END
 " status line ==================================================================================================== {{{
 
 " lightline status bar theme [wombat]
-let g:lightline = { 'colorscheme' : 'wombat' }
+let g:lightline = { 'colorscheme' : 'monokai_pro' }
 
 " clear status line when .vimrc is reloaded
 set statusline=
@@ -211,7 +208,7 @@ set noshowmode
 " gruvbox theme
 " autocmd vimenter * ++nested colorscheme gruvbox
 " colorscheme gruvbox
-colorscheme sonokai
+colorscheme monokai_pro
 
 " dark background / appearance
 set bg=dark
