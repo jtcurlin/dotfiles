@@ -14,9 +14,6 @@ source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
-# zsh plugin: zsh-syntax-highlighting
-source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # zsh plugin: zsh-autosuggestions
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -28,19 +25,22 @@ compinit
 autoload -Uz bashcompinit
 bashcompinit
 
-# dbt completion
+dbt completion
 [[ -r "$XDG_CONFIG_HOME/zsh/.dbt-completion.bash" ]] && \
     source "$XDG_CONFIG_HOME/zsh/.dbt-completion.bash"
 
 # uv shell autocompletion
-eval "$(uvx --generate-shell-completion zsh)"
+eval "$(uv generate-shell-completion zsh)"
 
 # config/dotfiles bare repo
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # direnv
+export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
 
 # uv tools / local path
 export PATH="$HOME/.local/bin:$PATH"
 
+# zsh plugin: zsh-syntax-highlighting (MUST BE SOURCED AT END OF FILE)
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -93,8 +93,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.diagnostic.config({
-  underline = true,
-  -- virtual_text = true,
+  float = {
+    source = true, -- prefix floating lsp diagnostic window messages with the source lsp, e.g. `basedpyright: ...`
+  },
 })
 
 vim.api.nvim_set_keymap("n", "<Leader>d", ":lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
