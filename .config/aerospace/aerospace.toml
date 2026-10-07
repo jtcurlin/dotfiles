@@ -75,8 +75,8 @@ on-mode-changed = []
 
 [workspace-to-monitor-force-assignment]
     1 = 'main'
-    2 = 'secondary'
-    3 = [1, 'main']
+    2 = ['secondary', '^built-in$']
+    3 = ['main']
     4 = 'secondary'
 
 # 'main' binding mode declaration
