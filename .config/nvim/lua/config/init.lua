@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.lsp.enable({ "basedpyright", "ruff", "tofu_ls", "lua_ls" })
+vim.lsp.enable({ "basedpyright", "ruff", "tofu_ls", "lua_ls", "dbt" })
 
 vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
 

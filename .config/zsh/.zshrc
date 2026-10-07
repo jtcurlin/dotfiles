@@ -25,7 +25,7 @@ compinit
 autoload -Uz bashcompinit
 bashcompinit
 
-dbt completion
+# dbt completion
 [[ -r "$XDG_CONFIG_HOME/zsh/.dbt-completion.bash" ]] && \
     source "$XDG_CONFIG_HOME/zsh/.dbt-completion.bash"
 
