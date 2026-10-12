@@ -17,6 +17,8 @@ source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # zsh plugin: zsh-autosuggestions
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+
 # enable zsh native completion system
 autoload -Uz compinit
 compinit
